@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tasks", "Tasks", "{6F28DBDE-F27B-450D-A8B9-82E3ED5528BB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lessons", "Lessons", "{89125255-1947-457B-8A5E-79025686A6F6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projects", "Projects", "{A014056F-BDAB-407C-B96C-EF33E4738024}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lesson_DependencyInjection", "Lesson_DependencyInjection\Lesson_DependencyInjection.csproj", "{E498906A-5F6F-40BD-A39F-AFC4A5EE2BA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvaloniaApplication1", "AvaloniaApplication1\AvaloniaApplication1.csproj", "{83470F02-43EC-4AA9-8E80-9E9AE17C7B04}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E498906A-5F6F-40BD-A39F-AFC4A5EE2BA9} = {89125255-1947-457B-8A5E-79025686A6F6}
+		{83470F02-43EC-4AA9-8E80-9E9AE17C7B04} = {A014056F-BDAB-407C-B96C-EF33E4738024}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E498906A-5F6F-40BD-A39F-AFC4A5EE2BA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E498906A-5F6F-40BD-A39F-AFC4A5EE2BA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E498906A-5F6F-40BD-A39F-AFC4A5EE2BA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E498906A-5F6F-40BD-A39F-AFC4A5EE2BA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83470F02-43EC-4AA9-8E80-9E9AE17C7B04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83470F02-43EC-4AA9-8E80-9E9AE17C7B04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83470F02-43EC-4AA9-8E80-9E9AE17C7B04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83470F02-43EC-4AA9-8E80-9E9AE17C7B04}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
