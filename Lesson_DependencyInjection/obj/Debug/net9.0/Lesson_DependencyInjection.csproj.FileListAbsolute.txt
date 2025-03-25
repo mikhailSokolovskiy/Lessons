@@ -71,3 +71,4 @@ C:\Users\Mikhail\RiderProjects\Lessons\Lesson_DependencyInjection\obj\Debug\net9
 C:\Users\Mikhail\RiderProjects\Lessons\Lesson_DependencyInjection\obj\Debug\net9.0\Lesson_D.043850C1.Up2Date
 C:\Users\Mikhail\RiderProjects\Lessons\Lesson_DependencyInjection\obj\Debug\net9.0\Lesson_DependencyInjection.genruntimeconfig.cache
 C:\Users\Mikhail\RiderProjects\Lessons\Lesson_DependencyInjection\obj\Debug\net9.0\ref\Lesson_DependencyInjection.dll
+C:\Users\Mikhail\RiderProjects\Lessons\Lesson_DependencyInjection\obj\Debug\net9.0\Lesson_DependencyInjection.sourcelink.json

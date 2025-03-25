@@ -15,28 +15,46 @@ public class MainWindowViewModel : ViewModelBase
 {
     private ITaskService _taskService;
     private IStorageService _storageService;
-
-    public ObservableCollection<TaskDTO> TasksList;
-    public ReactiveCommand<Unit, Unit> LoadStorage;
-    public ReactiveCommand<Unit, Unit> SaveStorage;
-    public ReactiveCommand<Unit, Unit> AddTask;
+    private ObservableCollection<TaskDTO> _tasksList = new()
+    {
+        new TaskDTO
+        {
+            TaskName = "Task1",
+            TaskStatus = false
+        }
+    };
+    public ObservableCollection<TaskDTO> TasksList
+    {
+        get => _tasksList;
+        set => this.RaiseAndSetIfChanged(ref _tasksList, value);
+    }
+    
+    
+    public ReactiveCommand<Unit, Unit> LoadStorageCommand { get; set; }
+    public ReactiveCommand<Unit, Unit> SaveStorageCommand {get;set;}
+    public ReactiveCommand<Unit, Unit> AddTaskCommand { get; set; }
+    public ReactiveCommand<Unit, Unit> ClearTableCommand { get; set; }
 
     public MainWindowViewModel(ITaskService taskService, IStorageService storageService)
     {
         _taskService = taskService;
         _storageService = storageService;
-        TasksList = new ObservableCollection<TaskDTO>();
+        TasksList.Add(new ()
+        {
+            TaskName = "New Task",
+            TaskStatus = false
+        });
 
-        LoadStorage = ReactiveCommand.Create(() =>
+        LoadStorageCommand = ReactiveCommand.Create(() =>
         {
             TasksList.Clear();
             TasksList.AddRange(_storageService.LoadTasks());
             _taskService.AddRangeTasks(TasksList);
         });
 
-        SaveStorage = ReactiveCommand.Create(() => { _storageService.SaveTasks(TasksList); });
+        SaveStorageCommand = ReactiveCommand.Create(() => { _storageService.SaveTasks(TasksList); });
 
-        AddTask = ReactiveCommand.Create(() =>
+        AddTaskCommand = ReactiveCommand.Create(() =>
         {
             TasksList.Add(new TaskDTO()
             {
