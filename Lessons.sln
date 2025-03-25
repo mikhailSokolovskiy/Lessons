@@ -5,6 +5,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lessons", "Lessons", "{89125255-1947-457B-8A5E-79025686A6F6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projects", "Projects", "{A014056F-BDAB-407C-B96C-EF33E4738024}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lesson_DependencyInjection", "Lesson_DependencyInjection\Lesson_DependencyInjection.csproj", "{E498906A-5F6F-40BD-A39F-AFC4A5EE2BA9}"
 EndProject

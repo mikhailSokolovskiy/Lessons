@@ -25,14 +25,14 @@ public class TaskService : ITaskService
 
     public void EditTask(TaskDTO taskDto)
     {
-        var oldTask = _tasks.First(task => task.Id == taskDto.Id);
-        var index = _tasks.IndexOf(oldTask);
-        _tasks[index] = taskDto;
+        // var oldTask = _tasks.First(task => task.Id == taskDto.Id);
+        // var index = _tasks.IndexOf(oldTask);
+        // _tasks[index] = taskDto;
     }
 
     public void DeleteTask(TaskDTO taskDto)
     {
-       var oldTask = _tasks.First(task => task.Id == taskDto.Id);
-       _tasks.Remove(oldTask);
+       // var oldTask = _tasks.First(task => task.Id == taskDto.Id);
+       // _tasks.Remove(oldTask);
     }
 }

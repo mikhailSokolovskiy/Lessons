@@ -1,18 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using AvaloniaApplication1.DB;
 using AvaloniaApplication1.Models;
 
 namespace AvaloniaApplication1.Service;
 
 public class StorageService : IStorageService
 {
-    public void SaveTasks(IList tasksList)
+    public void SaveTasks(IList<TaskDTO> tasksList)
     {
-        throw new System.NotImplementedException();
+        using (ApplicationContext db = new ApplicationContext())
+        {
+            foreach (var el in tasksList) db.Tasks.Update(el);
+
+            db.SaveChanges();
+        }
     }
 
     public IList<TaskDTO> LoadTasks()
     {
-        throw new System.NotImplementedException();
+        List<TaskDTO> tasksList;
+        using (ApplicationContext db = new ApplicationContext())
+        {
+            tasksList = new List<TaskDTO>(db.Tasks.ToList());
+        }
+        return tasksList;
     }
 }

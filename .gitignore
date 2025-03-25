@@ -1,0 +1,3 @@
+# Игнорируем временные файлы и каталоги
+ElegirMarking/bin/
+ElegirMarking/obj/
