@@ -14,7 +14,7 @@ namespace AvaloniaApplication1.ViewModels;
 public class MainWindowViewModel : ViewModelBase
 {
     private ITaskService _taskService;
-    private IStorageService _storageService;
+    private IStorageService<TaskDTO> _taskStorageService;
     private ObservableCollection<TaskDTO> _tasksList = new()
     {
         new TaskDTO
@@ -34,25 +34,25 @@ public class MainWindowViewModel : ViewModelBase
     public ReactiveCommand<Unit, Unit> SaveStorageCommand {get;set;}
     public ReactiveCommand<Unit, Unit> AddTaskCommand { get; set; }
     public ReactiveCommand<Unit, Unit> ClearTableCommand { get; set; }
-
-    public MainWindowViewModel(ITaskService taskService, IStorageService storageService)
+    
+    public MainWindowViewModel(ITaskService taskService, IStorageService<TaskDTO> taskStorageService)
     {
         _taskService = taskService;
-        _storageService = storageService;
+        _taskStorageService = taskStorageService;
         TasksList.Add(new ()
         {
             TaskName = "New Task",
             TaskStatus = false
         });
-
+        
         LoadStorageCommand = ReactiveCommand.Create(() =>
         {
             TasksList.Clear();
-            TasksList.AddRange(_storageService.LoadTasks());
+            TasksList.AddRange(_taskStorageService.Load());
             _taskService.AddRangeTasks(TasksList);
         });
 
-        SaveStorageCommand = ReactiveCommand.Create(() => { _storageService.SaveTasks(TasksList); });
+        SaveStorageCommand = ReactiveCommand.Create(() => { _taskStorageService.Save(TasksList); });
 
         AddTaskCommand = ReactiveCommand.Create(() =>
         {

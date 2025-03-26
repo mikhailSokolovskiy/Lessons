@@ -1,14 +1,13 @@
 using System.Collections.Generic;
-using System.Linq;
 using AvaloniaApplication1.Models;
 
-namespace AvaloniaApplication1.Service;
+namespace AvaloniaApplication1.Service.Realizations;
 
 public class TaskService : ITaskService
 {
     private List<TaskDTO> _tasks;
 
-    public TaskService()
+    public TaskService(ILoggerService logger)
     {
         _tasks = new List<TaskDTO>();
     }

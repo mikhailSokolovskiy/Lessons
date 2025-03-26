@@ -6,8 +6,9 @@ using AvaloniaApplication1.Models;
 
 namespace AvaloniaApplication1.Service;
 
-public interface IStorageService
+public interface IStorageService<T>
 {
-    void SaveTasks(IList<TaskDTO> tasksList);
-    IList<TaskDTO> LoadTasks();
+    void Save(IList<T> tasksList);
+    IList<T> Load();
+    
 }

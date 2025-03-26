@@ -1,14 +1,15 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using AvaloniaApplication1.DB;
 using AvaloniaApplication1.Models;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace AvaloniaApplication1.Service;
+namespace AvaloniaApplication1.Service.Realizations;
 
-public class StorageService : IStorageService
+public class TaskStorageService : IStorageService<TaskDTO>
 {
-    public void SaveTasks(IList<TaskDTO> tasksList)
+    public void Save(IList<TaskDTO> tasksList)
     {
         using (ApplicationContext db = new ApplicationContext())
         {
@@ -18,7 +19,7 @@ public class StorageService : IStorageService
         }
     }
 
-    public IList<TaskDTO> LoadTasks()
+    public IList<TaskDTO> Load()
     {
         List<TaskDTO> tasksList;
         using (ApplicationContext db = new ApplicationContext())
