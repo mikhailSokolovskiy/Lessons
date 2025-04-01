@@ -4,7 +4,9 @@
     <option name="projectPerEditor">
       <map>
         <entry key="AvaloniaApplication1/App.axaml" value="AvaloniaApplication1/AvaloniaApplication1.csproj" />
+        <entry key="AvaloniaApplication1/Views/FirstWindowView.axaml" value="AvaloniaApplication1/AvaloniaApplication1.csproj" />
         <entry key="AvaloniaApplication1/Views/MainWindow.axaml" value="AvaloniaApplication1/AvaloniaApplication1.csproj" />
+        <entry key="AvaloniaApplication1/Views/SecondWindowView.axaml" value="AvaloniaApplication1/AvaloniaApplication1.csproj" />
         <entry key="Lesson_DependencyInjection/Views/MainWindow.axaml" value="Lesson_DependencyInjection/Lesson_DependencyInjection.csproj" />
         <entry key="Lesson_DependencyInjection/Views/View2.axaml" value="Lesson_DependencyInjection/Lesson_DependencyInjection.csproj" />
       </map>

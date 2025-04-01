@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Reactive;
+using AvaloniaApplication1.Mediators;
 using AvaloniaApplication1.Models;
 using AvaloniaApplication1.Service;
 using DynamicData;
@@ -14,58 +16,62 @@ namespace AvaloniaApplication1.ViewModels;
 public class MainWindowViewModel : ViewModelBase
 {
     private ITaskService _taskService;
-    private IStorageService<TaskDTO> _taskStorageService;
+
     private ObservableCollection<TaskDTO> _tasksList = new()
     {
-        new TaskDTO
-        {
-            TaskName = "Task1",
-            TaskStatus = false
-        }
+
     };
+
+    private readonly Mediator _mediator;
+
     public ObservableCollection<TaskDTO> TasksList
     {
         get => _tasksList;
         set => this.RaiseAndSetIfChanged(ref _tasksList, value);
     }
-    
-    
+
+
     public ReactiveCommand<Unit, Unit> LoadStorageCommand { get; set; }
-    public ReactiveCommand<Unit, Unit> SaveStorageCommand {get;set;}
+    public ReactiveCommand<Unit, Unit> SaveStorageCommand { get; set; }
     public ReactiveCommand<Unit, Unit> AddTaskCommand { get; set; }
     public ReactiveCommand<Unit, Unit> ClearTableCommand { get; set; }
     
-    public MainWindowViewModel(ITaskService taskService, IStorageService<TaskDTO> taskStorageService)
+    
+    public MainWindowViewModel(ITaskService taskService, Mediator mediator)
     {
         _taskService = taskService;
-        _taskStorageService = taskStorageService;
-        TasksList.Add(new ()
-        {
-            TaskName = "New Task",
-            TaskStatus = false
-        });
+        _mediator = mediator;
+        
+        _mediator.Subscribe<NewClass>(GetNewClass);
         
         LoadStorageCommand = ReactiveCommand.Create(() =>
         {
             TasksList.Clear();
-            TasksList.AddRange(_taskStorageService.Load());
+            TasksList.AddRange(_taskService.GetAllTasks());
+        });
+
+        SaveStorageCommand = ReactiveCommand.Create(() =>
+        {
             _taskService.AddRangeTasks(TasksList);
         });
 
-        SaveStorageCommand = ReactiveCommand.Create(() => { _taskStorageService.Save(TasksList); });
-
         AddTaskCommand = ReactiveCommand.Create(() =>
         {
-            TasksList.Add(new TaskDTO()
+            TasksList.Add(_taskService.AddTask(new TaskDTO()
             {
                 TaskName = "New Task",
                 TaskStatus = false
-            });
-            _taskService.AddTask(new TaskDTO()
-            {
-                TaskName = "New Task",
-                TaskStatus = false
-            });
+            }));
+            // _taskService.AddTask(new TaskDTO()
+            // {
+            //     TaskName = "New Task",
+            //     TaskStatus = false
+            // });
         });
+    }
+
+    private void GetNewClass(NewClass newClass)
+    {
+        Debug.WriteLine(newClass.txt1);
     }
 }

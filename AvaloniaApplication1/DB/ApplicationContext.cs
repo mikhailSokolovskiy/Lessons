@@ -8,12 +8,19 @@ public class ApplicationContext : DbContext
 {
     public DbSet<TaskDTO> Tasks => Set<TaskDTO>();
     public DbSet<UserDTO> Users => Set<UserDTO>();
-    public ApplicationContext() => Database.EnsureCreated();
     private readonly IConfigService _cfg;
 
     public ApplicationContext(IConfigService cfg)
     {
         _cfg = cfg;
+        Database.EnsureCreated();
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+        modelBuilder.ApplyConfiguration(new TaskConfigurator());
+        modelBuilder.ApplyConfiguration(new UserConfigurator());
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

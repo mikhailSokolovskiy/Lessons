@@ -1,42 +1,49 @@
 using System.Collections.Generic;
 using System.Linq;
 using AvaloniaApplication1.Models;
+using AvaloniaApplication1.Repository;
 
 namespace AvaloniaApplication1.Service.Realizations;
 
 public class UserService : IUserService
 {
-    private readonly IStorageService<UserDTO> _userStorage;
+    private readonly IRepository<UserDTO> _repository;
     private readonly ILoggerService _logger;
-    private IList<UserDTO> _usersList;
-    public UserService(IStorageService<UserDTO> userStorage, ILoggerService logger)
+
+    public UserService(IRepository<UserDTO> repository, ILoggerService logger)
     {
-        _userStorage = userStorage;
+        _repository = repository;
         _logger = logger;
-        _usersList = _userStorage.Load();
-    }
-    public UserDTO GetUserById(int id)
-    {
-        return _usersList.First(x => x.UserId == id);
     }
 
-    public void EditUser(int id)
+    // public UserDTO GetUserById(int id)
+    // {
+    //     return _repository.GetById(id);
+    // }
+
+    public void EditUser(UserDTO userDto)
     {
-        throw new System.NotImplementedException();
+        _repository.Update(userDto);
     }
 
-    public void RemoveUser(int id)
+    public void DeleteUser(UserDTO userDto)
     {
-        throw new System.NotImplementedException();
+        _repository.Delete(userDto);
     }
 
     public void AddUser(UserDTO user)
     {
-        throw new System.NotImplementedException();
+        _repository.Add(user);
     }
 
-    public int GetUsersByCredentials(string username, string password)
+    public UserDTO GetUsersByCredentials(string username, string password)
     {
-        return _usersList.First(x => x.UserName == username && x.Password == password).UserId;
+        var allUsers = _repository.GetAll();
+        return allUsers.First(x => x.UserName == username && x.Password == password);
+    }
+
+    public IList<UserDTO> GetAllUsers()
+    {
+        return _repository.GetAll();
     }
 }

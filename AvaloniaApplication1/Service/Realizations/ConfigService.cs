@@ -12,7 +12,7 @@ public class ConfigService : IConfigService
     }
     public string GetConnectionString()
     {
-        return "Data Source=tasks1.db";
+        return "Data Source=tasks4.db";
     }
 
     public IBrush GetTheme()

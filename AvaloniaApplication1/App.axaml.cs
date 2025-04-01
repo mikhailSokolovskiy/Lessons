@@ -2,7 +2,9 @@ using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using AvaloniaApplication1.DB;
+using AvaloniaApplication1.Mediators;
 using AvaloniaApplication1.Models;
+using AvaloniaApplication1.Repository;
 using AvaloniaApplication1.Service;
 using AvaloniaApplication1.Service.Realizations;
 using AvaloniaApplication1.ViewModels;
@@ -28,12 +30,15 @@ public partial class App : Application
         var serviceCollection = new ServiceCollection();
 
         serviceCollection.AddSingleton<ITaskService, TaskService>()
-            .AddSingleton<IStorageService<TaskDTO>, TaskStorageService>()
-            .AddSingleton<IStorageService<UserDTO>, UserStorageService>()
+            .AddSingleton<IRepository<TaskDTO>, TaskRepository>()
+            .AddSingleton<IRepository<UserDTO>, UserRepository>()
             .AddSingleton<IAuthService, AuthService>()
             .AddSingleton<IConfigService, ConfigService>()
             .AddSingleton<IUserService, UserService>()
             .AddSingleton<ILoggerService, LoggerService>()
+            .AddSingleton<Mediator>()
+            .AddSingleton<FirstViewModel>()
+            .AddSingleton<SecondViewModel>()
             .AddDbContext<ApplicationContext>();
 
         
@@ -41,6 +46,8 @@ public partial class App : Application
 
         var serviceProvider = serviceCollection.BuildServiceProvider();
         var vm = serviceProvider.GetRequiredService<MainWindowViewModel>();
+        var vm1 = serviceProvider.GetRequiredService<FirstViewModel>();
+        var vm2 = serviceProvider.GetRequiredService<SecondViewModel>();
 
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
@@ -48,6 +55,8 @@ public partial class App : Application
             {
                 DataContext = vm
             };
+            new FirstWindowView(vm1).Show();
+            new SecondWindowView(vm2).Show();
         }
 
         base.OnFrameworkInitializationCompleted();

@@ -11,6 +11,5 @@ public class TaskDTO
     // public Guid Id { get; } = Guid.NewGuid();
     public int Id { get; set; }
     public string TaskName { get; set; }
-    
     public bool TaskStatus { get; set; }
 }
